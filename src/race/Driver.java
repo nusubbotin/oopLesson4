@@ -1,5 +1,7 @@
 package race;
 
+import java.util.Objects;
+
 public abstract class Driver implements DriverInterface{
     private String fullName;
     private int experience;
@@ -19,5 +21,18 @@ public abstract class Driver implements DriverInterface{
 
     public void carRefuel(){
         System.out.println("Заправить машину");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver driver = (Driver) o;
+        return experience == driver.experience && Objects.equals(fullName, driver.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, experience);
     }
 }
